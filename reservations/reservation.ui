@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RESERVATIONMainWindow</class>
+ <widget class="QMainWindow" name="RESERVATIONMainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1870</width>
+    <height>1040</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="Search_btn">
+    <property name="geometry">
+     <rect>
+      <x>1440</x>
+      <y>310</y>
+      <width>411</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="sizeIncrement">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#Search_btn{
+color: rgb(255, 255, 255);
+background-color: rgb(60, 255, 39);
+border-radius: 18px;
+border: 3px Solid rgb(3, 168, 17);
+}
+#Search_btn:hover:pressed{
+background-color: rgb(126, 255, 103);
+}</string>
+    </property>
+    <property name="text">
+     <string>Search </string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="NUM_CHAMBRE_input">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>230</y>
+      <width>331</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid rgba(0,0,0,0);
+border-bottom-color: rgb(17, 40, 255);
+padding-bottom:7px;
+background-color: rgb(194, 254, 255);</string>
+    </property>
+    <property name="placeholderText">
+     <string>NUM_CHAMBRE	</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>0</y>
+      <width>411</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>34</pointsize>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(9, 28, 149);</string>
+    </property>
+    <property name="text">
+     <string>RESERVATION</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Add_btn">
+    <property name="geometry">
+     <rect>
+      <x>1440</x>
+      <y>130</y>
+      <width>411</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="sizeIncrement">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#Add_btn{
+background-color: rgb(112, 162, 255);
+color: rgb(255, 255, 255);
+border-radius: 18px;
+border: 3px Solid rgb(17, 21, 255);
+}
+#Add_btn:hover:pressed{
+background-color: rgb(190, 164, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Add </string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="NUM_VISITEUR_input">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>120</y>
+      <width>331</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid rgba(0,0,0,0);
+border-bottom-color: rgb(17, 40, 255);
+padding-bottom:7px;
+background-color: rgb(194, 254, 255);</string>
+    </property>
+    <property name="placeholderText">
+     <string>NUM_VISITEUR	</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Delete_btn">
+    <property name="geometry">
+     <rect>
+      <x>1440</x>
+      <y>220</y>
+      <width>411</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="sizeIncrement">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#Delete_btn{
+color: rgb(255, 255, 255);
+border-radius: 18px;
+background-color: rgb(255, 2, 14);
+border: 3px Solid rgb(175, 34, 15);
+}
+#Delete_btn:hover:pressed{
+background-color: rgb(255, 167, 43);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Delete </string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="NUM_RESERVATION_input">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>120</y>
+      <width>331</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid rgba(0,0,0,0);
+border-bottom-color: rgb(17, 40, 255);
+padding-bottom:7px;
+background-color: rgb(194, 254, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>NUM_RESERVATION</string>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="DATE_FIN">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>380</y>
+      <width>311</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid rgba(0,0,0,0);
+border-color: rgb(17, 40, 255);
+padding-bottom:7px;
+background-color: rgb(194, 254, 255);</string>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="DATE_DEB">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>380</y>
+      <width>331</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid rgba(0,0,0,0);
+border-color: rgb(17, 40, 255);
+padding-bottom:7px;
+background-color: rgb(194, 254, 255);</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>320</y>
+      <width>151</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(9, 28, 149);</string>
+    </property>
+    <property name="text">
+     <string>DATE_DEB  :</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>320</y>
+      <width>151</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(9, 28, 149);</string>
+    </property>
+    <property name="text">
+     <string>DATE_FIN  :</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="Reservation_listWidget">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>130</y>
+      <width>551</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid rgba(0,0,0,0);
+border-color: rgb(17, 40, 255);
+padding-bottom:7px;
+background-color: rgb(194, 254, 255);</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Clear_btn">
+    <property name="geometry">
+     <rect>
+      <x>1440</x>
+      <y>400</y>
+      <width>411</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="sizeIncrement">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#Clear_btn{
+color: rgb(255, 255, 255);
+border-radius: 18px;
+background-color: rgb(255, 112, 10);
+border: 3px Solid rgb(175, 34, 15);
+}
+#Clear_btn:hover:pressed{
+background-color: rgb(158, 182, 186);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Clear  </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>80</y>
+      <width>351</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(9, 28, 149);</string>
+    </property>
+    <property name="text">
+     <string>Reservation information list  :</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>460</y>
+      <width>111</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>17</pointsize>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(9, 28, 149);</string>
+    </property>
+    <property name="text">
+     <string>PRICE :</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Price">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>460</y>
+      <width>351</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(226, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>0000 DH</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="showChambre_Btn">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>230</y>
+      <width>331</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="sizeIncrement">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#showChambre_Btn {
+    border: 3px solid rgb(3, 168, 17);
+    border-radius: 18px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #ff0000, stop:0.17 #ff7f00, stop:0.33 #ffff00, stop:0.5 #00ff00, stop:0.67 #0000ff, stop:0.83 #4b0082, stop:1 #8f00ff);
+	color: rgb(255, 255, 255);
+}
+#showChambre_Btn:hover:pressed {
+    background-color: rgb(126, 255, 103);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Show Chambre</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="allReservation_btn">
+    <property name="geometry">
+     <rect>
+      <x>1440</x>
+      <y>490</y>
+      <width>411</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="sizeIncrement">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#allReservation_btn{
+color: rgb(255, 255, 255);
+background-color: rgb(195, 15, 177);
+border-radius: 18px;
+border: 3px Solid rgb(170, 8, 108);
+}
+#allReservation_btn:hover:pressed{
+background-color: rgb(255, 160, 248);
+}</string>
+    </property>
+    <property name="text">
+     <string>All Reservation </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>550</y>
+      <width>261</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <underline>true</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(9, 28, 149);</string>
+    </property>
+    <property name="text">
+     <string>All Reservation list  :</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="allReservation_tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>600</y>
+      <width>1851</width>
+      <height>361</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 3px Solid rgb(3, 168, 17);
+</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>NUM_RESERVATION</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>NUM_VISITEUR</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>NUM_CHAMBRE</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>DATE_DEB</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>DATE_FIN</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>CIN</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>NOM</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>PRENOM</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ADRESSE</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>TEL</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>EMAIL</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ETAGE</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>DESCRIPTION</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>PRIX</string>
+     </property>
+    </column>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1870</width>
+     <height>29</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

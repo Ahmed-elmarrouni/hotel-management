@@ -1,0 +1,193 @@
+
+# NEW SEARCH CODE 
+
+# # # # # # # # #  # # # # # #  # # #  # # #  # # # #  # # # # # # #
+
+    # def search_click(self):
+    #     self.Reservation_listWidget.clear()
+
+    #     num_reservation = self.NUM_RESERVATION_input.text()
+    #     num_visiteur = self.NUM_VISITEUR_input.text()
+    #     num_chambre = self.NUM_CHAMBRE_input.text()
+    #     dat_deb = self.DATE_DEB.text()
+    #     dat_fin = self.DATE_FIN.text()
+
+    #     connection = mysql.connector.connect(
+    #         host='localhost',
+    #         user='root',
+    #         password='',
+    #         database='hotel'
+    #     )
+
+    #     reservationQuery = "SELECT * FROM reservation WHERE NUM_RESERVATION=%s OR NUM_VISITEUR=%s OR NUM_CHAMBRE=%s OR (DATE_DEB <= %s AND DATE_FIN >= %s)"
+        
+    #     dat_deb = datetime.strptime(dat_deb, '%m/%d/%Y').date()
+    #     dat_fin = datetime.strptime(dat_fin, '%m/%d/%Y').date()
+
+    #     inputs = (num_reservation, num_visiteur, num_chambre, dat_deb, dat_fin)
+
+    #     cursor = connection.cursor()
+    #     cursor.execute(reservationQuery, inputs)
+    #     results = cursor.fetchall()
+
+    #     found_results = False
+    #     for result in results:
+    #         NUM_RESERVATION = result[1]
+    #         NUM_VISITEUR = result[2]
+    #         NUM_CHAMBRE = result[3]
+    #         DATE_DEB = QDate.fromString(str(result[4]), "yyyy-MM-dd")
+    #         DATE_FIN = QDate.fromString(str(result[5]), "yyyy-MM-dd")
+    #         found_results = True
+
+    #         self.Reservation_listWidget.addItem("NUM_RESERVATION: " + str(NUM_RESERVATION))
+    #         self.Reservation_listWidget.addItem("NUM_VISITEUR: " + str(NUM_VISITEUR))
+    #         self.Reservation_listWidget.addItem("NUM_CHAMBRE: " + str(NUM_CHAMBRE))
+    #         self.Reservation_listWidget.addItem("DATE_DEB: " + DATE_DEB.toString("yyyy-MM-dd"))
+    #         self.Reservation_listWidget.addItem("DATE_FIN: " + DATE_FIN.toString("yyyy-MM-dd") + "\n")
+
+    #     if not found_results:
+    #         self.clear_click()
+    #         self.Reservation_listWidget.clear()
+    #         QtWidgets.QMessageBox.warning(self, '^_^', 'NOT FOUND !!')
+
+    #     cursor.close()
+    #     connection.close()
+     
+# # # # # # # # #  # # # # # #  # # #  # # #  # # # #  # # # # # # #
+
+        if num_visiteur != "" and num_chambre == "":
+            reservationQuery = "SELECT * FROM reservation WHERE NUM_VISITEUR = %s"
+            inputs = (num_visiteur,)
+
+        elif num_visiteur == "" and num_chambre != "":
+            reservationQuery = "SELECT * FROM reservation WHERE NUM_CHAMBRE = %s"
+            inputs = (num_chambre,)
+
+        elif num_visiteur != "" and num_chambre != "":
+            reservationQuery = "SELECT * FROM reservation WHERE NUM_VISITEUR = %s AND NUM_CHAMBRE = %s"
+            inputs = (num_visiteur, num_chambre)    
+
+# # # # # # # # #  # # # # # #  # # #  # # #  # # # #  # # # # # # #
+
+def search_click(self):
+    self.Reservation_listWidget.clear()
+
+    num_reservation = self.NUM_RESERVATION_input.text()
+    dat_deb = self.DATE_DEB.text()
+    dat_fin = self.DATE_FIN.text()
+
+    num_visiteur = self.NUM_VISITEUR_input.text()
+    num_chambre = self.NUM_CHAMBRE_input.text()
+
+    connection = mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='',
+        database='hotel'
+    )
+
+    cursor = connection.cursor()
+
+    reservationQuery, inputs = self.build_query(num_reservation, num_visiteur, num_chambre, dat_deb, dat_fin)
+
+    cursor.execute(reservationQuery, inputs)
+    results = cursor.fetchall()
+
+    if results:
+        for result in results:
+            NUM_RESERVATION = result[1]
+            NUM_VISITEUR = result[2]
+            NUM_CHAMBRE = result[3]
+            DATE_DEB = QDate.fromString(str(result[4]), "yyyy-MM-dd")
+            DATE_FIN = QDate.fromString(str(result[5]), "yyyy-MM-dd")
+
+            self.Reservation_listWidget.addItem("NUM_RESERVATION: " + str(NUM_RESERVATION))
+            self.Reservation_listWidget.addItem("NUM_VISITEUR: " + str(NUM_VISITEUR))
+            self.Reservation_listWidget.addItem("NUM_CHAMBRE: " + str(NUM_CHAMBRE))
+            self.Reservation_listWidget.addItem("DATE_DEB: " + DATE_DEB.toString("yyyy-MM-dd"))
+            self.Reservation_listWidget.addItem("DATE_FIN: " + DATE_FIN.toString("yyyy-MM-dd") + "\n")
+    else:
+        self.Reservation_listWidget.clear()
+        QtWidgets.QMessageBox.warning(self, '^_^', 'NOT FOUND !!')
+
+    cursor.close()
+    connection.close()
+
+
+def build_query(self, num_reservation, num_visiteur, num_chambre, dat_deb, dat_fin):
+    if num_reservation and not num_visiteur and not num_chambre:
+        reservationQuery = "SELECT * FROM reservation WHERE NUM_RESERVATION = %s"
+        inputs = (num_reservation,)
+
+    elif num_visiteur and not num_chambre and not num_reservation:
+        reservationQuery = "SELECT * FROM reservation WHERE NUM_VISITEUR = %s"
+        inputs = (num_visiteur,)
+
+    elif num_chambre and not num_visiteur and not num_reservation:
+        reservationQuery = "SELECT * FROM reservation WHERE NUM_CHAMBRE = %s"
+        inputs = (num_chambre,)
+
+    elif num_visiteur and num_chambre and not num_reservation:
+        reservationQuery = "SELECT * FROM reservation WHERE NUM_VISITEUR = %s AND NUM_CHAMBRE = %s"
+        inputs = (num_visiteur, num_chambre)
+
+    else:
+        reservationQuery = "SELECT * FROM reservation WHERE (DATE_DEB BETWEEN %s AND %s) AND (DATE_FIN BETWEEN %s AND %s)"
+        dat_deb = datetime.strptime(dat_deb, '%m/%d/%Y').date()
+        dat_fin = datetime.strptime(dat_fin, '%m/%d/%Y').date()
+        inputs = (dat_deb, dat_fin, dat_deb, dat_fin)
+
+    return reservationQuery, inputs
+
+
+##############################################################################################################################################################################
+    #  SEARCH BUTTON
+    # def search_click(self):
+    #     self.Reservation_listWidget.clear()
+
+    #     num_reservation = self.NUM_RESERVATION_input.text()
+    #     num_visiteur = self.NUM_VISITEUR_input.text()
+    #     num_chambre = self.NUM_CHAMBRE_input.text()
+    #     dat_deb = self.DATE_DEB.text()
+    #     dat_fin = self.DATE_FIN.text()
+
+    #     connection = mysql.connector.connect(
+    #         host='localhost',
+    #         user='root',
+    #         password='',
+    #         database='hotel'
+    #     )
+
+    #     reservationQuery = "SELECT * FROM reservation WHERE NUM_RESERVATION=%s OR NUM_VISITEUR=%s OR NUM_CHAMBRE=%s OR (DATE_DEB BETWEEN %s AND %s) AND (DATE_FIN BETWEEN %s AND %s)"
+
+    #     dat_deb = datetime.strptime(dat_deb, '%m/%d/%Y').date()
+    #     dat_fin = datetime.strptime(dat_fin, '%m/%d/%Y').date()
+
+    #     inputs = (num_reservation, num_visiteur, num_chambre, dat_deb, dat_fin, dat_deb, dat_fin)
+
+    #     cursor = connection.cursor()
+    #     cursor.execute(reservationQuery, inputs)
+    #     results = cursor.fetchall()
+
+    #     found_results = False
+    #     for result in results:
+    #         NUM_RESERVATION = result[1]
+    #         NUM_VISITEUR = result[2]
+    #         NUM_CHAMBRE = result[3]
+    #         DATE_DEB = QDate.fromString(str(result[4]), "yyyy-MM-dd")
+    #         DATE_FIN = QDate.fromString(str(result[5]), "yyyy-MM-dd")
+    #         found_results = True
+
+    #         self.Reservation_listWidget.addItem("NUM_RESERVATION: " + str(NUM_RESERVATION))
+    #         self.Reservation_listWidget.addItem("NUM_VISITEUR: " + str(NUM_VISITEUR))
+    #         self.Reservation_listWidget.addItem("NUM_CHAMBRE: " + str(NUM_CHAMBRE))
+    #         self.Reservation_listWidget.addItem("DATE_DEB: " + DATE_DEB.toString("yyyy-MM-dd"))
+    #         self.Reservation_listWidget.addItem("DATE_FIN: " + DATE_FIN.toString("yyyy-MM-dd") + "\n")
+
+    #     if not found_results:
+    #         self.clear_click()
+    #         self.Reservation_listWidget.clear()
+    #         QtWidgets.QMessageBox.warning(self, '^_^', 'NOT FOUND !!')
+
+    #     cursor.close()
+    #     connection.close()
