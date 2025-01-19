@@ -1,4 +1,3 @@
----
 
 **Hotel Management Application**  
 ================================
