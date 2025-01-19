@@ -1,149 +1,98 @@
-````markdown
-# Hotel Management Application
+---
 
-## Overview
+**Hotel Management Application**  
+================================
 
-This Python-based **Hotel Management Application** is developed using **PyQt5** and **Qt Designer**. The application aims to streamline hotel operations by providing an efficient and user-friendly interface for managing reservations, guests, rooms, and other essential hotel functions.
-
-### Features
-
-- **Guest Management**: Add, edit, and manage guest information.
-- **Room Management**: Track room availability, assign rooms to guests, and manage room details.
-- **Reservation System**: Handle reservations, check-ins, and check-outs.
-- **Billing and Invoicing**: Generate bills and invoices for guests.
+**Overview**  
+The Hotel Management Application is a comprehensive software solution designed to optimize hotel operations. Developed in Python using PyQt5 and Qt Designer, it offers a centralized platform to manage reservations, guests, rooms, and billing, ensuring seamless workflows and efficiency.
 
 ---
 
-## Key Features
+**Core Features**
 
-### 1. **Input Validation**
+1. **Guest Management**
 
-- **Phone Number**: Ensures the phone number is exactly 10 digits using regex.
-- **Email**: Checks for a valid email format using regex.
-- Displays error messages if required fields are left empty.
+   - Add, update, and view guest details effortlessly.
+   - Maintain detailed profiles for better customer tracking.
 
-### 2. **CRUD Operations**
+2. **Room Management**
 
-- **Add**: Inserts new records into the database, ensuring all fields are validated before submission.
-- **Search**: Fetches and displays details based on unique identifiers (`NUM_RESERVATION` or `NUM_VISITEUR`).
-- **Delete**: Provides a confirmation dialog before deletion and checks if the record exists before proceeding.
+   - Monitor real-time room availability.
+   - Assign rooms to guests and manage room-specific attributes.
 
-### 3. **User Experience**
+3. **Reservation System**
 
-- Uses `QtWidgets.QMessageBox` for user feedback, error messages, and confirmations.
-- Clears input fields after operations like deletion or when the search yields no results.
+   - Simplify the booking process, from reservations to check-ins and check-outs.
 
----
-
-## Screenshots
-
-### Chambre Screen
-
-![Chambre Screen](./Readme-imgs/image.png)
-
-### Client List
-
-![Client List](./Readme-imgs/image-1.png)
-
-### Display All Reservations
-
-![Display All Reservations](./Readme-imgs/image-2.png)
-
-### Display All Available Rooms
-
-![Display All Available Rooms](./Readme-imgs/image-3.png)
-
-### Visiteurs
-
-![Visiteurs](./Readme-imgs/image-4.png)
+4. **Billing and Invoicing**
+   - Generate accurate and professional-grade invoices with ease.
 
 ---
 
-## Technologies Used
+**Key Highlights**
 
-- **PyQt5**: For the graphical user interface.
-- **MySQL**: For data storage.
-- **Python**: For application logic and database interaction.
+1. **Advanced Input Validation**
 
----
+   - Phone Numbers: Ensures proper 10-digit formatting using regular expressions.
+   - Email Addresses: Validates correct formats through regex checks.
+   - Displays detailed error messages for invalid or incomplete inputs.
 
-## Strengths
+2. **Comprehensive CRUD Operations**
 
-- **Code Organization**: Logical separation of features into functions (`add_click`, `search_click`, `delete_click`).
-- **Validation**: Comprehensive input validation minimizes errors during database operations.
-- **User Feedback**: Confirmation dialogs and message boxes improve user interaction and clarity.
-- **Modular SQL Queries**: Parameters (`%s`) in queries enhance security by preventing SQL injection.
+   - **Create**: Add validated records to the database.
+   - **Read**: Retrieve details using unique identifiers like reservation or visitor numbers.
+   - **Update**: Modify existing data while ensuring integrity.
+   - **Delete**: Remove records with user confirmation and validation.
 
----
-
-## Suggestions for Improvement
-
-### 1. **Connection Management**
-
-Currently, database connections are opened and closed within each function. This approach works but can be inefficient in larger applications. Consider using a **database connection pool** or a centralized connection handler.
-
-### 2. **Error Handling**
-
-There is minimal handling for database-related errors. Implement error handling for cases like:
-
-- Database connection failure.
-- SQL execution errors (e.g., duplicate entries, constraint violations).
-
-Example:
-
-```python
-try:
-    connection = mysql.connector.connect(...)
-    # Execute SQL queries
-except mysql.connector.Error as e:
-    QtWidgets.QMessageBox.critical(self, 'Database Error', f"An error occurred: {e}")
-finally:
-    connection.close()
-```
-````
-
-### 3. **Code Duplication**
-
-Some code segments, such as repeated `QMessageBox` calls and query executions, can be refactored into helper functions. For example:
-
-```python
-def show_message(self, title, message, icon=QtWidgets.QMessageBox.Information):
-    msg = QtWidgets.QMessageBox()
-    msg.setIcon(icon)
-    msg.setWindowTitle(title)
-    msg.setText(message)
-    msg.exec_()
-```
-
-### 4. **Database Schema**
-
-Ensure the schema for `reservation` and `visiteur` tables includes appropriate constraints like:
-
-- Primary keys (`NUM_RESERVATION`, `NUM_VISITEUR`).
-- Unique constraints (e.g., `CIN` for `visiteur`).
-- Data types that match expected input.
+3. **Enhanced User Experience**
+   - Uses QMessageBox for clear feedback, confirmations, and error handling.
+   - Automatically clears input fields after successful operations or errors.
 
 ---
 
-## School Project Context
+**Screenshots**  
+The application interface includes various screens designed for functionality and ease of use:
 
-Since this is a school project, it demonstrates your understanding of:
+1. **Chambre Screen**  
+   Displays room-related details and management options.  
+   ![Chambre Screen](./Readme-imgs/image.png)
 
-- GUI design principles.
-- Basic SQL operations (CRUD).
-- Validation and error handling in software.
+2. **Client List**  
+   Shows a comprehensive list of all guests in the database.  
+   ![Client List](./Readme-imgs/image-1.png)
 
-To enhance your project further:
+3. **Display All Reservations**  
+   Provides a complete overview of current and past reservations.  
+   ![Display All Reservations](./Readme-imgs/image-2.png)
 
-- Add more advanced SQL features (e.g., joins, stored procedures).
-- Implement data export functionality (e.g., export search results to CSV).
+4. **Display All Available Rooms**  
+   Highlights rooms currently available for booking.  
+   ![Display All Available Rooms](./Readme-imgs/image-3.png)
+
+5. **Visiteurs Management**  
+   Facilitates managing visitor records.  
+   ![Visiteurs](./Readme-imgs/image-4.png)
 
 ---
 
-## License
+**Technical Details**
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- **Technology Stack**
 
-```
+  - PyQt5: Rich graphical user interface.
+  - MySQL: Reliable and scalable database backend.
+  - Python: Application logic and database interactions.
 
-```
+- **Code Design**
+  - Modular SQL Queries: Parameterized for enhanced security and prevention of SQL injection.
+  - Reusable Components: Common functionalities (e.g., error handling, messaging) encapsulated into helper methods.
+
+---
+
+**Context for Educational Use**  
+This application serves as a showcase of skills in GUI design, SQL database interaction, and error handling. For further improvement:
+
+- Integrate advanced SQL features like joins, triggers, and stored procedures.
+- Add data export options for reporting (e.g., to CSV or PDF).
+
+---
